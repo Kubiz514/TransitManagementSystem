@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BusRoutingModule } from './bus-routing.module';
 import { BusTableComponent } from './bus-table/bus-table.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { BusTableComponent } from './bus-table/bus-table.component';
   ],
   imports: [
     CommonModule,
-    BusRoutingModule
+    BusRoutingModule,
+    AgGridModule
   ]
 })
 export class BusModule { }

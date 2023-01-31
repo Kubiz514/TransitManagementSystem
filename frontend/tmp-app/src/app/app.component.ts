@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ColDef } from 'ag-grid-community';
 import { WebApiService } from './core';
+import { RouteOption } from './shared/layout';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +9,38 @@ import { WebApiService } from './core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
-  buses$ = this._webApi.get('/buses');
-  colDefs: ColDef[] = [
+  options: RouteOption[] = [
     {
-      field: 'Id'
+      header: 'Brands',
+      url: '/brands'
     },
     {
-      field: 'Name'
+      header: 'Bus',
+      url: '/buses'
     },
     {
-      field: 'Description'
+      header: 'Documents',
+      url: '/documents'
+    },
+    {
+      header: 'Drivers',
+      url: '/drivers'
+    },
+    {
+      header: 'Routes',
+      url: '/routes'
+    },
+    {
+      header: 'Schedule',
+      url: '/schedules'
+    },
+    {
+      header: 'Service records',
+      url: '/service-records'
+    },
+    {
+      header: 'Stops',
+      url: '/stops'
     }
-  ];
-
-  constructor(private _webApi: WebApiService) {
-  }
+  ]
 }
