@@ -16,5 +16,5 @@ public class Driver {
     public String ContactInfo;
     public LocalDateTime HiredDate;
     @OneToMany(mappedBy = "Driver")
-    public List<Bus> Buses;
+    private List<Bus> Buses;
 }

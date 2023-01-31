@@ -23,7 +23,7 @@ public class Stop {
     public Route Route;
 
     @OneToMany(mappedBy = "Stop")
-    public List<Schedule> Schedules;
+    private List<Schedule> Schedules;
 
     public Stop() {};
 }
