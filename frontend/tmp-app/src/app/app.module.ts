@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core';
 import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
+import { LayoutModule } from './shared/layout';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     CoreModule,
     AppRoutingModule,
-    AgGridModule
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
