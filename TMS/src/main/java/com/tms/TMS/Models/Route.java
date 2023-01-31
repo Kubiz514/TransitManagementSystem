@@ -19,7 +19,7 @@ public class Route {
     public Bus Bus;
 
     @OneToMany(mappedBy = "Route")
-    public List<Stop> Stops;
+    private List<Stop> Stops;
 
     public Route() {};
 }
