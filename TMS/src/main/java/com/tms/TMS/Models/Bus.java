@@ -1,8 +1,9 @@
 package com.tms.TMS.Models;
 
 import jakarta.persistence.*;
-
 import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 @Table(name="Buses")
@@ -26,6 +27,9 @@ public class Bus {
 
     @OneToMany(mappedBy = "Bus")
     public List<Document> Documents;
+
+    @OneToMany(mappedBy = "Bus")
+    public List<Route> Routes;
 
     public Bus() {}
 }
