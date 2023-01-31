@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { StopsRoutingModule } from './stops-routing.module';
 import { StopsTableComponent } from './stops-table/stops-table.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { StopsTableComponent } from './stops-table/stops-table.component';
   ],
   imports: [
     CommonModule,
-    StopsRoutingModule
+    StopsRoutingModule,
+    AgGridModule
   ]
 })
 export class StopsModule { }

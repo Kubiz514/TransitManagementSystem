@@ -23,7 +23,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/routes/routes.module').then(m => m.RoutesModule)
   },
   {
-    path: 'schedule',
+    path: 'schedules',
     loadChildren: () => import('./pages/schedule/schedule.module').then(m => m.ScheduleModule)
   },
   {

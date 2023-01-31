@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableView } from '@core/table-view';
-import { ColDef } from 'ag-grid-community';
+import { WebApiService } from '@core/web-api';
+import { ColDef, DomLayoutType } from 'ag-grid-community';
 
 @Component({
   selector: 'app-routes-table',
@@ -8,8 +9,20 @@ import { ColDef } from 'ag-grid-community';
   styleUrls: ['./routes-table.component.css']
 })
 export class RoutesTableComponent implements OnInit, TableView {
-  colDefs: ColDef<any>[] = [];
-  constructor() { }
+  request$ = this._webApi.get('/routes');
+  colDefs: ColDef[] = [
+    {
+      field: 'Id'
+    },
+    {
+      field: 'Name'
+    }
+  ];
+  domLayout: DomLayoutType = 'autoHeight';
+  
+
+  constructor(private _webApi: WebApiService) { }
+  
 
 
   ngOnInit(): void {

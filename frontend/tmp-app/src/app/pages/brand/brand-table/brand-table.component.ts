@@ -9,7 +9,7 @@ import { ColDef, DomLayoutType } from 'ag-grid-community';
   styleUrls: ['./brand-table.component.css']
 })
 export class BrandTableComponent implements OnInit, TableView {
-  asd$ = this._webApi.get('/brands');
+  request$ = this._webApi.get('/brands');
   colDefs: ColDef[] = [
     {
       field: 'Id'

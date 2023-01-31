@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DriversRoutingModule } from './drivers-routing.module';
 import { DriversTableComponent } from './drivers-table/drivers-table.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DriversTableComponent } from './drivers-table/drivers-table.component';
   ],
   imports: [
     CommonModule,
-    DriversRoutingModule
+    DriversRoutingModule,
+    AgGridModule
   ]
 })
 export class DriversModule { }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DocumentsRoutingModule } from './documents-routing.module';
 import { DocumentsTableComponent } from './documents-table/documents-table.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DocumentsTableComponent } from './documents-table/documents-table.compo
   ],
   imports: [
     CommonModule,
-    DocumentsRoutingModule
+    DocumentsRoutingModule,
+    AgGridModule
   ]
 })
 export class DocumentsModule { }
