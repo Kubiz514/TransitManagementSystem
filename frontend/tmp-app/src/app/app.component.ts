@@ -36,7 +36,7 @@ export class AppComponent {
     },
     {
       header: 'Service records',
-      url: '/schedule'
+      url: '/service-records'
     },
     {
       header: 'Stops',

@@ -4,9 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core';
-import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from './shared/layout';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { LayoutModule } from './shared/layout';
     BrowserAnimationsModule,
     CoreModule,
     AppRoutingModule,
-    LayoutModule
+    LayoutModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
