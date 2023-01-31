@@ -14,5 +14,5 @@ public class Brand {
     public String Description;
 
     @OneToMany(mappedBy = "Brand")
-    public List<Bus> Buses;
+    private List<Bus> Buses;
 }

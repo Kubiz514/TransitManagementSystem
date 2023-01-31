@@ -16,20 +16,20 @@ public class Bus {
 
     @ManyToOne
     @JoinColumn(name="BrandId")
-    public Brand Brand;
+    private Brand Brand;
 
     @ManyToOne
     @JoinColumn(name="DriverId")
-    public Driver Driver;
+    private Driver Driver;
 
     @OneToMany(mappedBy = "Bus")
-    public List<ServiceRecord> ServiceRecords;
+    private List<ServiceRecord> ServiceRecords;
 
     @OneToMany(mappedBy = "Bus")
-    public List<Document> Documents;
+    private List<Document> Documents;
 
     @OneToMany(mappedBy = "Bus")
-    public List<Route> Routes;
+    private List<Route> Routes;
 
     public Bus() {}
 }
