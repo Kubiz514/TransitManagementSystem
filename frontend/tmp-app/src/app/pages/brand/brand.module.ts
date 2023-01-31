@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BrandRoutingModule } from './brand-routing.module';
 import { BrandTableComponent } from './brand-table/brand-table.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { BrandTableComponent } from './brand-table/brand-table.component';
   ],
   imports: [
     CommonModule,
-    BrandRoutingModule
+    BrandRoutingModule,
+    AgGridModule
   ]
 })
 export class BrandModule { }

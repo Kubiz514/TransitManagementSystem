@@ -1,1 +1,6 @@
-<p>brand-table works!</p>
+<ng-container *ngIf="asd$ | async as asd">
+    <ag-grid-angular class="ag-theme-alpine" style="width: 80%; height: 500px;" [rowData]="asd"
+        [columnDefs]="colDefs" [domLayout]="domLayout" [pagination]="true">
+
+    </ag-grid-angular>
+</ng-container>
