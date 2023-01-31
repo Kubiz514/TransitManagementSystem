@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableView } from '@core/table-view';
-import { ColDef } from 'ag-grid-community';
+import { WebApiService } from '@core/web-api';
+import { ColDef, DomLayoutType } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,10 +10,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./documents-table.component.css']
 })
 export class DocumentsTableComponent implements OnInit, TableView {
+  request$ = this._webApi.get('/documents');
+  colDefs: ColDef[] = [
+    {
+      field: 'Id'
+    },
+    {
+      field: 'DocumentType'
+    },
+    {
+      field: 'ValidTo'
+    }
+  ];
+  domLayout: DomLayoutType = 'autoHeight';
+  
 
-  constructor() { }
-
-  colDefs: ColDef<any>[] = [];
+  constructor(private _webApi: WebApiService) { }
 
   ngOnInit(): void {
   }

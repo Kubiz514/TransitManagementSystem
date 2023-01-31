@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableView } from '@core/table-view';
-import { ColDef } from 'ag-grid-community';
+import { WebApiService } from '@core/web-api';
+import { ColDef, DomLayoutType } from 'ag-grid-community';
 
 @Component({
   selector: 'app-schedule-table',
@@ -8,9 +9,22 @@ import { ColDef } from 'ag-grid-community';
   styleUrls: ['./schedule-table.component.css']
 })
 export class ScheduleTableComponent implements OnInit, TableView {
-  colDefs: ColDef<any>[] = [];
+  request$ = this._webApi.get('/schedules');
+  colDefs: ColDef[] = [
+    {
+      field: 'Id'
+    },
+    {
+      field: 'Departure'
+    },
+    {
+      field: 'temporary'
+    }
+  ];
+  domLayout: DomLayoutType = 'autoHeight';
   
-  constructor() { }
+
+  constructor(private _webApi: WebApiService) { }
   
 
   ngOnInit(): void {

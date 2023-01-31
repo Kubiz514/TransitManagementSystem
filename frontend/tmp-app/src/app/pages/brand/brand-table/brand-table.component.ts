@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableView } from '@core/table-view';
-import { ColDef } from 'ag-grid-community';
+import { WebApiService } from '@core/web-api';
+import { ColDef, DomLayoutType } from 'ag-grid-community';
 
 @Component({
   selector: 'app-brand-table',
@@ -8,9 +9,22 @@ import { ColDef } from 'ag-grid-community';
   styleUrls: ['./brand-table.component.css']
 })
 export class BrandTableComponent implements OnInit, TableView {
-  colDefs: ColDef<any>[] = [];
+  request$ = this._webApi.get('/brands');
+  colDefs: ColDef[] = [
+    {
+      field: 'Id'
+    },
+    {
+      field: 'Name'
+    },
+    {
+      field: 'Description'
+    }
+  ];
+  domLayout: DomLayoutType = 'autoHeight';
+  
 
-  constructor() { }
+  constructor(private _webApi: WebApiService) { }
   
 
   ngOnInit(): void {

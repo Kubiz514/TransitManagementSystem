@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TableView } from '@core/table-view';
-import { ColDef } from 'ag-grid-community';
+import { WebApiService } from '@core/web-api';
+import { ColDef, DomLayoutType } from 'ag-grid-community';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,9 +10,28 @@ import { Observable } from 'rxjs';
   styleUrls: ['./drivers-table.component.css']
 })
 export class DriversTableComponent implements OnInit, TableView {
-  colDefs: ColDef<any>[] = [];
+  request$ = this._webApi.get('/drivers');
+  colDefs: ColDef[] = [
+    {
+      field: 'Id'
+    },
+    {
+      field: 'FirstName'
+    },
+    {
+      field: 'LastName'
+    },
+    {
+      field: 'ContactInfo'
+    },
+    {
+      field: 'HiredDate'
+    }
+  ];
+  domLayout: DomLayoutType = 'autoHeight';
+  
 
-  constructor() { }
+  constructor(private _webApi: WebApiService) { }
   
 
   ngOnInit(): void {

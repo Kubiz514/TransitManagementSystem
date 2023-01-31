@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ScheduleRoutingModule } from './schedule-routing.module';
 import { ScheduleTableComponent } from './schedule-table/schedule-table.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ScheduleTableComponent } from './schedule-table/schedule-table.componen
   ],
   imports: [
     CommonModule,
-    ScheduleRoutingModule
+    ScheduleRoutingModule,
+    AgGridModule
   ]
 })
 export class ScheduleModule { }
