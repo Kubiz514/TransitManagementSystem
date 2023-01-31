@@ -23,13 +23,13 @@ public class Bus {
     public Driver Driver;
 
     @OneToMany(mappedBy = "Bus")
-    public List<ServiceRecord> ServiceRecords;
+    private List<ServiceRecord> ServiceRecords;
 
     @OneToMany(mappedBy = "Bus")
-    public List<Document> Documents;
+    private List<Document> Documents;
 
     @OneToMany(mappedBy = "Bus")
-    public List<Route> Routes;
+    private List<Route> Routes;
 
     public Bus() {}
 }

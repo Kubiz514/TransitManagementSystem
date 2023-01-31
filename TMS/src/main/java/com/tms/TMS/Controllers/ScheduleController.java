@@ -1,6 +1,7 @@
 package com.tms.TMS.Controllers;
-import com.tms.TMS.Models.Bus;
-import com.tms.TMS.Repositories.IBusRepository;
+
+import com.tms.TMS.Models.Schedule;
+import com.tms.TMS.Repositories.IScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/buses")
+@RequestMapping("/schedules")
 
-public class BusController {
+public class ScheduleController {
 
     @Autowired
-    IBusRepository repository;
+    IScheduleRepository repository;
     @GetMapping("")
-    public Iterable<Bus> getAll(){
-        Iterable<Bus> entities = repository.findAll();
+    public Iterable<Schedule> getAll(){
+        Iterable<Schedule> entities = repository.findAll();
         return entities;
     }
 }
