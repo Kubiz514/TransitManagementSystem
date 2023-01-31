@@ -32,7 +32,7 @@ export class AppComponent {
     },
     {
       header: 'Schedule',
-      url: '/schedule'
+      url: '/schedules'
     },
     {
       header: 'Service records',
