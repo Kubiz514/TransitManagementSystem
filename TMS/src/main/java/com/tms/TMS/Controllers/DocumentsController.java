@@ -5,10 +5,9 @@ import com.tms.TMS.Models.Document;
 import com.tms.TMS.Repositories.IBrandRepository;
 import com.tms.TMS.Repositories.IDocumentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/documents")
@@ -21,5 +20,15 @@ public class DocumentsController {
     public Iterable<Document> getAll(){
         Iterable<Document> entities = repository.findAll();
         return entities;
+    }
+    @GetMapping("/{id}")
+    public Optional<Document> get(@PathVariable("id") long id)
+    {
+        return repository.findById(id);
+    }
+    @DeleteMapping("/{id}")
+    private void delete(@PathVariable("id") long id)
+    {
+        repository.deleteById(id);
     }
 }
