@@ -6,6 +6,8 @@ import com.tms.TMS.Repositories.IStopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/stops")
 
@@ -29,5 +31,14 @@ public class StopController {
     public void update(@RequestBody Stop stop)
     {
         repository.save(stop);
+    @GetMapping("/{id}")
+    public Optional<Stop> get(@PathVariable("id") long id)
+    {
+        return repository.findById(id);
+    }
+    @DeleteMapping("/{id}")
+    private void delete(@PathVariable("id") long id)
+    {
+        repository.deleteById(id);
     }
 }

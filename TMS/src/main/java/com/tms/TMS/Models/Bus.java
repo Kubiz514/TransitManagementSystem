@@ -22,13 +22,13 @@ public class Bus {
     @JoinColumn(name="DriverId")
     private Driver Driver;
 
-    @OneToMany(mappedBy = "Bus")
+    @OneToMany(mappedBy = "Bus", cascade = CascadeType.DETACH, orphanRemoval = false)
     private List<ServiceRecord> ServiceRecords;
 
-    @OneToMany(mappedBy = "Bus")
+    @OneToMany(mappedBy = "Bus", cascade = CascadeType.DETACH, orphanRemoval = false)
     private List<Document> Documents;
 
-    @OneToMany(mappedBy = "Bus")
+    @OneToMany(mappedBy = "Bus", cascade = CascadeType.DETACH, orphanRemoval = false)
     private List<Route> Routes;
 
     public Bus() {}

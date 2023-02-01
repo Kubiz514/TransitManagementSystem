@@ -7,6 +7,8 @@ import com.tms.TMS.Repositories.IBusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/brands")
 
@@ -30,5 +32,14 @@ public class BrandsController {
     public void update(@RequestBody Brand brand)
     {
         repository.save(brand);
+    @GetMapping("/{id}")
+    public Optional<Brand> get(@PathVariable("id") long id)
+    {
+        return repository.findById(id);
+    }
+    @DeleteMapping("/{id}")
+    private void delete(@PathVariable("id") long id)
+    {
+        repository.deleteById(id);
     }
 }
