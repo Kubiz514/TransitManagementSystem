@@ -5,10 +5,7 @@ import com.tms.TMS.Models.Bus;
 import com.tms.TMS.Repositories.IBrandRepository;
 import com.tms.TMS.Repositories.IBusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/brands")
@@ -21,5 +18,17 @@ public class BrandsController {
     public Iterable<Brand> getAll(){
         Iterable<Brand> entities = repository.findAll();
         return entities;
+    }
+
+    @PostMapping("")
+    public void create(@RequestBody Brand brand)
+    {
+        repository.save(brand);
+    }
+
+    @PutMapping("")
+    public void update(@RequestBody Brand brand)
+    {
+        repository.save(brand);
     }
 }
