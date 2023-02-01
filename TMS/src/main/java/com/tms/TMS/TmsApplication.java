@@ -23,7 +23,7 @@ public class TmsApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("**")
+				registry.addMapping("/**")
 						.allowedOrigins("http://localhost:4200")
 						.allowedHeaders()
 						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");

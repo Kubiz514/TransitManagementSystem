@@ -4,7 +4,6 @@ import com.tms.TMS.Repositories.IBusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @ResponseBody
 @RequestMapping("/buses")
