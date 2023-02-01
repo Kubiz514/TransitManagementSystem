@@ -12,35 +12,36 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 //TODO Configure authentication and CORS
-@SpringBootApplication()
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class TmsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TmsApplication.class, args);
 	}
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**")
-						.allowedOrigins("http://localhost:4200")
-						.allowedHeaders()
-						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
-			}
-		};
-	}
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
-				.authorizeHttpRequests((requests) -> requests
-						.requestMatchers("**").permitAll()
-						.anyRequest().anonymous()
-				)
-				.logout((logout) -> logout.permitAll());
-
-		return http.build();
-	}
-
+//	@Bean
+//	public WebMvcConfigurer corsConfigurer() {
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("/**")
+//						.allowedOrigins("http://localhost:4200")
+//						.allowedHeaders()
+//						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
+//			}
+//		};
+//	}
+//
+//	@Bean
+//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//		http
+//				.authorizeHttpRequests((requests) -> requests
+//						.requestMatchers("**").permitAll()
+//						.anyRequest()
+//						.anonymous()
+//				)
+//				.logout((logout) -> logout.permitAll());
+//
+//		return http.build();
+//	}
 }
