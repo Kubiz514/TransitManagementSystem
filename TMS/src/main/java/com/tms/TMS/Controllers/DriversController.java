@@ -30,9 +30,9 @@ public class DriversController {
     }
 
     @PutMapping("")
-    public void update(@RequestBody Driver driver)
-    {
+    public void update(@RequestBody Driver driver) {
         repository.save(driver);
+    }
     @GetMapping("/{id}")
     public Optional<Driver> get(@PathVariable("id") long id)
     {

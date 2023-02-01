@@ -28,9 +28,9 @@ public class BusController {
     }
 
     @PutMapping("")
-    public void update(@RequestBody Bus bus)
-    {
+    public void update(@RequestBody Bus bus) {
         repository.save(bus);
+    }
     @GetMapping("/{id}")
     public Optional<Bus> get(@PathVariable("id") long id)
     {

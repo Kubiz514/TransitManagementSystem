@@ -29,9 +29,9 @@ public class BrandsController {
     }
 
     @PutMapping("")
-    public void update(@RequestBody Brand brand)
-    {
+    public void update(@RequestBody Brand brand) {
         repository.save(brand);
+    }
     @GetMapping("/{id}")
     public Optional<Brand> get(@PathVariable("id") long id)
     {

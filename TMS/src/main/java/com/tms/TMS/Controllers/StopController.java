@@ -28,9 +28,9 @@ public class StopController {
     }
 
     @PutMapping("")
-    public void update(@RequestBody Stop stop)
-    {
+    public void update(@RequestBody Stop stop) {
         repository.save(stop);
+    }
     @GetMapping("/{id}")
     public Optional<Stop> get(@PathVariable("id") long id)
     {

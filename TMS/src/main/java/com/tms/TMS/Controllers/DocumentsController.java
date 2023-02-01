@@ -30,9 +30,9 @@ public class DocumentsController {
     }
 
     @PutMapping("")
-    public void update(@RequestBody Document document)
-    {
+    public void update(@RequestBody Document document) {
         repository.save(document);
+    }
     @GetMapping("/{id}")
     public Optional<Document> get(@PathVariable("id") long id)
     {

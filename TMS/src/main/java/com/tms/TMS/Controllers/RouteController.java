@@ -28,9 +28,9 @@ public class RouteController {
     }
 
     @PutMapping("")
-    public void update(@RequestBody Route route)
-    {
+    public void update(@RequestBody Route route) {
         repository.save(route);
+    }
     @GetMapping("/{id}")
     public Optional<Route> get(@PathVariable("id") long id)
     {

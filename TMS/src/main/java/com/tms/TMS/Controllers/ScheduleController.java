@@ -28,9 +28,9 @@ public class ScheduleController {
     }
 
     @PutMapping("")
-    public void update(@RequestBody Schedule schedule)
-    {
+    public void update(@RequestBody Schedule schedule) {
         repository.save(schedule);
+    }
     @GetMapping("/{id}")
     public Optional<Schedule> get(@PathVariable("id") long id)
     {
