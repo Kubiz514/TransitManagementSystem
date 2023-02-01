@@ -20,6 +20,17 @@ public class RouteController {
         Iterable<Route> entities = repository.findAll();
         return entities;
     }
+
+    @PostMapping("")
+    public void create(@RequestBody Route route)
+    {
+        repository.save(route);
+    }
+
+    @PutMapping("")
+    public void update(@RequestBody Route route) {
+        repository.save(route);
+    }
     @GetMapping("/{id}")
     public Optional<Route> get(@PathVariable("id") long id)
     {

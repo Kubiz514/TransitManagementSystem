@@ -20,6 +20,17 @@ public class ScheduleController {
         Iterable<Schedule> entities = repository.findAll();
         return entities;
     }
+
+    @PostMapping("")
+    public void create(@RequestBody Schedule schedule)
+    {
+        repository.save(schedule);
+    }
+
+    @PutMapping("")
+    public void update(@RequestBody Schedule schedule) {
+        repository.save(schedule);
+    }
     @GetMapping("/{id}")
     public Optional<Schedule> get(@PathVariable("id") long id)
     {

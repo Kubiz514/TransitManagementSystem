@@ -22,6 +22,18 @@ public class ServiceRecordsController {
         Iterable<ServiceRecord> entities = repository.findAll();
         return entities;
     }
+
+    @PostMapping("")
+    public void create(@RequestBody ServiceRecord serviceRecord)
+    {
+        repository.save(serviceRecord);
+    }
+
+    @PutMapping("")
+    public void update(@RequestBody ServiceRecord serviceRecord)
+    {
+        repository.save(serviceRecord);
+    }
     @GetMapping("/{id}")
     public Optional<ServiceRecord> get(@PathVariable("id") long id)
     {
