@@ -15,6 +15,6 @@ public class Driver {
     public String LastName;
     public String ContactInfo;
     public LocalDateTime HiredDate;
-    @OneToMany(mappedBy = "Driver")
+    @OneToMany(mappedBy = "Driver", cascade = CascadeType.DETACH, orphanRemoval = false)
     private List<Bus> Buses;
 }
