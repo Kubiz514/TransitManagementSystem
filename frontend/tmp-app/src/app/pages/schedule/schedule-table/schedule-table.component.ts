@@ -9,22 +9,23 @@ import { ColDef, DomLayoutType } from 'ag-grid-community';
   styleUrls: ['./schedule-table.component.css']
 })
 export class ScheduleTableComponent implements OnInit, TableView {
-  request$ = this._webApi.get('/schedules');
+  request$ = this.webApi.get('/schedules');
   colDefs: ColDef[] = [
     {
       field: 'Id'
     },
     {
-      field: 'Departure'
+      field: 'Departure',
     },
     {
       field: 'temporary'
     }
+
   ];
   domLayout: DomLayoutType = 'autoHeight';
   
 
-  constructor(private _webApi: WebApiService) { }
+  constructor(protected webApi: WebApiService) { }
   
 
   ngOnInit(): void {

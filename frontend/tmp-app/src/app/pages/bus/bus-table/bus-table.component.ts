@@ -12,16 +12,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./bus-table.component.css']
 })
 export class BusTableComponent implements OnInit, TableView {
-  request$ = this._webApi.get('/buses');
+  request$ = this.webApi.get('/buses');
   colDefs: ColDef[] = [
     {
       field: 'Id'
     },
     {
-      field: 'Name'
+      field: 'Name',
+      editable: true
     },
     {
-      field: 'Description'
+      field: 'Description',
+      editable: true
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';
@@ -40,7 +42,7 @@ export class BusTableComponent implements OnInit, TableView {
     }
   ];
 
-  constructor(private _webApi: WebApiService) { }
+  constructor(protected webApi: WebApiService) { }
   
   ngOnInit(): void {
   }

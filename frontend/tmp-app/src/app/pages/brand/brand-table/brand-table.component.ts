@@ -9,22 +9,24 @@ import { ColDef, DomLayoutType } from 'ag-grid-community';
   styleUrls: ['./brand-table.component.css']
 })
 export class BrandTableComponent implements OnInit, TableView {
-  request$ = this._webApi.get('/brands');
+  request$ = this.webApi.get('/brands');
   colDefs: ColDef[] = [
     {
       field: 'Id'
     },
     {
-      field: 'Name'
+      field: 'Name',
+      editable: true
     },
     {
-      field: 'Description'
+      field: 'Description',
+      editable: true
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';
   
 
-  constructor(private _webApi: WebApiService) { }
+  constructor(protected webApi: WebApiService) { }
   
 
   ngOnInit(): void {

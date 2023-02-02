@@ -33,6 +33,8 @@ export class WebApiService {
     catchError(this._handleErrorFunc)
   );
 
+  public updateTableRow = (url: string, event: any) => this.put(url, event.data).subscribe();
+
   private _handleErrorFunc = (err: any) => {
     this._dialog.open(ErrorDialogComponent, { data: err })
     console.log(err);
