@@ -22,7 +22,7 @@ public class Stop {
     @JoinColumn(name="RouteId")
     public Route Route;
 
-    @OneToMany(mappedBy = "Stop")
+    @OneToMany(mappedBy = "Stop", cascade = CascadeType.DETACH, orphanRemoval = false)
     private List<Schedule> Schedules;
 
     public Stop() {};

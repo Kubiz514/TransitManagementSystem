@@ -18,7 +18,7 @@ public class Route {
     @JoinColumn(name="BusId")
     public Bus Bus;
 
-    @OneToMany(mappedBy = "Route")
+    @OneToMany(mappedBy = "Route", cascade = CascadeType.DETACH, orphanRemoval = false)
     private List<Stop> Stops;
 
     public Route() {};

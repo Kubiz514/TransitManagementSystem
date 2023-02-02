@@ -13,6 +13,6 @@ public class Brand {
     public String Name;
     public String Description;
 
-    @OneToMany(mappedBy = "Brand")
+    @OneToMany(mappedBy = "Brand", cascade = CascadeType.DETACH, orphanRemoval = false)
     private List<Bus> Buses;
 }

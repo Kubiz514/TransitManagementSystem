@@ -43,4 +43,29 @@ public class TmsApplication {
 		return http.build();
 	}
 
+//	@Bean
+//	public WebMvcConfigurer corsConfigurer() {
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("/**")
+//						.allowedOrigins("http://localhost:4200")
+//						.allowedHeaders()
+//						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
+//			}
+//		};
+//	}
+//
+//	@Bean
+//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//		http
+//				.authorizeHttpRequests((requests) -> requests
+//						.requestMatchers("**").permitAll()
+//						.anyRequest()
+//						.anonymous()
+//				)
+//				.logout((logout) -> logout.permitAll());
+//
+//		return http.build();
+//	}
 }
