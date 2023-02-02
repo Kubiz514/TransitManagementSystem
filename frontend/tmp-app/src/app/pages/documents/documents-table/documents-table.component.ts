@@ -10,13 +10,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./documents-table.component.css']
 })
 export class DocumentsTableComponent implements OnInit, TableView {
-  request$ = this._webApi.get('/documents');
+  request$ = this.webApi.get('/documents');
   colDefs: ColDef[] = [
     {
       field: 'Id'
     },
     {
-      field: 'DocumentType'
+      field: 'DocumentType',
+      editable: true
     },
     {
       field: 'ValidTo'
@@ -25,7 +26,7 @@ export class DocumentsTableComponent implements OnInit, TableView {
   domLayout: DomLayoutType = 'autoHeight';
   
 
-  constructor(private _webApi: WebApiService) { }
+  constructor(protected webApi: WebApiService) { }
 
   ngOnInit(): void {
   }

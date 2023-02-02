@@ -9,7 +9,7 @@ import { ColDef, DomLayoutType } from 'ag-grid-community';
   styleUrls: ['./stops-table.component.css']
 })
 export class StopsTableComponent implements OnInit, TableView {
-  request$ = this._webApi.get('/stops');
+  request$ = this.webApi.get('/stops');
   colDefs: ColDef[] = [
     {
       field: 'Id'
@@ -24,7 +24,7 @@ export class StopsTableComponent implements OnInit, TableView {
   domLayout: DomLayoutType = 'autoHeight';
   
 
-  constructor(private _webApi: WebApiService) { }
+  constructor(protected webApi: WebApiService) { }
 
   ngOnInit(): void {
   }

@@ -26,7 +26,6 @@ public class TmsApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
 						.allowedOrigins("http://localhost:4200")
-						.allowedHeaders()
 						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
 			}
 		};

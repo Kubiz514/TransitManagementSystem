@@ -9,19 +9,20 @@ import { ColDef, DomLayoutType } from 'ag-grid-community';
   styleUrls: ['./routes-table.component.css']
 })
 export class RoutesTableComponent implements OnInit, TableView {
-  request$ = this._webApi.get('/routes');
+  request$ = this.webApi.get('/routes');
   colDefs: ColDef[] = [
     {
       field: 'Id'
     },
     {
-      field: 'Name'
+      field: 'Name',
+      editable: true
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';
   
 
-  constructor(private _webApi: WebApiService) { }
+  constructor(protected webApi: WebApiService) { }
   
 
 
