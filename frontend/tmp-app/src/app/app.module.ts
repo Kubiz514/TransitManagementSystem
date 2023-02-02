@@ -7,6 +7,9 @@ import { CoreModule } from './core';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from './shared/layout';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,9 +21,10 @@ import { MatCardModule } from '@angular/material/card';
     CoreModule,
     AppRoutingModule,
     LayoutModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [MatDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
