@@ -19,18 +19,18 @@ public class TmsApplication {
 		SpringApplication.run(TmsApplication.class, args);
 	}
 
-//	@Bean
-//	public WebMvcConfigurer corsConfigurer() {
-//		return new WebMvcConfigurer() {
-//			@Override
-//			public void addCorsMappings(CorsRegistry registry) {
-//				registry.addMapping("/**")
-//						.allowedOrigins("http://localhost:4200")
-//						.allowedHeaders()
-//						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
-//			}
-//		};
-//	}
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+						.allowedOrigins("http://localhost:4200")
+						.allowedHeaders()
+						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE");
+			}
+		};
+	}
 //
 //	@Bean
 //	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
