@@ -4,3 +4,10 @@
 
     </ag-grid-angular>
 </ng-container>
+
+<div style="padding-top: 50px;">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <formly-form [form]="form" [fields]="fields"></formly-form>
+        <button type="submit" class="btn btn-default">Add</button>
+    </form>
+</div>

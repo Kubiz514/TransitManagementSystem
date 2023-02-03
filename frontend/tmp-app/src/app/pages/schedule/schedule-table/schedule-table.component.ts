@@ -12,9 +12,6 @@ export class ScheduleTableComponent implements OnInit, TableView {
   request$ = this.webApi.get('/schedules');
   colDefs: ColDef[] = [
     {
-      field: 'Id'
-    },
-    {
       field: 'Departure',
     },
     {

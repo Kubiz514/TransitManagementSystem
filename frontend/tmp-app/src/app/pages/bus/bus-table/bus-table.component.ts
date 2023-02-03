@@ -12,10 +12,10 @@ import { BehaviorSubject, Observable, startWith, switchMap } from 'rxjs';
   styleUrls: ['./bus-table.component.css']
 })
 export class BusTableComponent implements OnInit, TableView {
-  paginationPageSize = 10;
-  refresh = new BehaviorSubject<boolean>(false);
-  request$ = this.refresh.pipe(startWith(true), switchMap(x => this.webApi.get('/buses')));
   colDefs: ColDef[] = [
+    {
+      field: 'Id'
+    },
     {
       field: 'Name'
     },
@@ -25,9 +25,10 @@ export class BusTableComponent implements OnInit, TableView {
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';
-
+  paginationPageSize = 10;
+  refresh = new BehaviorSubject<boolean>(false);
+  request$ = this.refresh.pipe(startWith(true), switchMap(x => this.webApi.get('/buses')));
   form = new FormGroup({});
-  model = { email: 'email@gmail.com' };
   fields: FormlyFieldConfig[] = [
     {
       key: 'Name',
@@ -50,7 +51,7 @@ export class BusTableComponent implements OnInit, TableView {
   ];
 
   constructor(protected webApi: WebApiService) { }
-  
+
   ngOnInit(): void {
   }
 
