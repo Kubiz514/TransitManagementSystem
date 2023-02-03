@@ -8,6 +8,7 @@ import com.tms.TMS.Repositories.IDocumentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RestController
@@ -26,6 +27,7 @@ public class DocumentsController {
     @PostMapping("")
     public void create(@RequestBody Document document)
     {
+        document.ValidTo = LocalDateTime.now();
         repository.save(document);
     }
 

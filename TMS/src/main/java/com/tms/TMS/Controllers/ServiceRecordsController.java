@@ -8,6 +8,7 @@ import com.tms.TMS.Repositories.IServiceRecordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RestController
@@ -26,6 +27,7 @@ public class ServiceRecordsController {
     @PostMapping("")
     public void create(@RequestBody ServiceRecord serviceRecord)
     {
+        serviceRecord.DateTime = LocalDateTime.now();
         repository.save(serviceRecord);
     }
 

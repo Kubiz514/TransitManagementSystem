@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { TableView } from '@core/table-view';
 import { WebApiService } from '@core/web-api';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 import { ColDef, DomLayoutType } from 'ag-grid-community';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, startWith, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-drivers-table',
@@ -10,7 +12,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./drivers-table.component.css']
 })
 export class DriversTableComponent implements OnInit, TableView {
-  request$ = this.webApi.get('/drivers');
   colDefs: ColDef[] = [
     {
       field: 'Id'
@@ -32,10 +33,48 @@ export class DriversTableComponent implements OnInit, TableView {
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';
-  
+  paginationPageSize = 10;
+  refresh = new BehaviorSubject<boolean>(false);
+  request$ = this.refresh.pipe(startWith(true), switchMap(x => this.webApi.get('/drivers')));
+  form = new FormGroup({});
+  fields: FormlyFieldConfig[] = [
+    {
+      key: 'FirstName',
+      type: 'input',
+      props: {
+        label: 'First Name',
+        placeholder: 'first name',
+        required: true,
+      }
+    },
+    {
+      key: 'LastName',
+      type: 'input',
+      props: {
+        label: 'Last Name',
+        placeholder: 'last name',
+        required: true,
+      }
+    },
+    {
+      key: 'ContactInfo',
+      type: 'input',
+      props: {
+        label: 'Contact Info',
+        placeholder: 'contact info',
+        required: true,
+      }
+    }
+  ];
+
+  onSubmit(): void {
+    this.webApi.createTableRow('/drivers', this.form);
+    this.refresh.next(true);
+    this.form.reset();
+  }
 
   constructor(protected webApi: WebApiService) { }
-  
+
 
   ngOnInit(): void {
   }

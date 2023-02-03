@@ -8,6 +8,7 @@ import com.tms.TMS.Repositories.IDriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RestController
@@ -26,6 +27,7 @@ public class DriversController {
     @PostMapping("")
     public void create(@RequestBody Driver driver)
     {
+        driver.HiredDate = LocalDateTime.now();
         repository.save(driver);
     }
 

@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { DriversRoutingModule } from './drivers-routing.module';
 import { DriversTableComponent } from './drivers-table/drivers-table.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +16,10 @@ import { AgGridModule } from 'ag-grid-angular';
   imports: [
     CommonModule,
     DriversRoutingModule,
-    AgGridModule
+    AgGridModule,
+    ReactiveFormsModule,
+    FormlyMaterialModule,
+    FormlyModule
   ]
 })
 export class DriversModule { }
