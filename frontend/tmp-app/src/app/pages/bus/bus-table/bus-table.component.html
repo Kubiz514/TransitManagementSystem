@@ -1,11 +1,14 @@
 <ng-container *ngIf="request$ | async as request">
-    <ag-grid-angular editType="fullRow" class="ag-theme-alpine" style="width: 100%; height: 500px;" (rowValueChanged)="webApi.updateTableRow('/buses',$event)" [rowData]="request"
-        [columnDefs]="colDefs" [domLayout]="domLayout" [pagination]="true">
+    <ag-grid-angular editType="fullRow" class="ag-theme-alpine" style="width: 100%; height: 500px;"
+        (rowValueChanged)="webApi.updateTableRow('/buses',$event)" [rowData]="request" [columnDefs]="colDefs"
+        [domLayout]="domLayout" [pagination]="true" [paginationPageSize]="paginationPageSize">
 
     </ag-grid-angular>
 </ng-container>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
+<div style="padding-top: 50px;">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>

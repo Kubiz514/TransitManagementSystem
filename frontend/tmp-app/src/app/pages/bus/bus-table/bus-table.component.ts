@@ -12,22 +12,12 @@ import { BehaviorSubject, Observable, startWith, switchMap } from 'rxjs';
   styleUrls: ['./bus-table.component.css']
 })
 export class BusTableComponent implements OnInit, TableView {
-<<<<<<< HEAD
+  paginationPageSize = 10;
   refresh = new BehaviorSubject<boolean>(false);
   request$ = this.refresh.pipe(startWith(true), switchMap(x => this.webApi.get('/buses')));
   colDefs: ColDef[] = [
     {
       field: 'Name'
-=======
-  request$ = this.webApi.get('/buses');
-  colDefs: ColDef[] = [
-    {
-      field: 'Id'
-    },
-    {
-      field: 'Name',
-      editable: true
->>>>>>> main
     },
     {
       field: 'Description',
