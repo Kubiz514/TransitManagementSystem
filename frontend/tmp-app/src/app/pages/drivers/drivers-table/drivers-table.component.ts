@@ -10,19 +10,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./drivers-table.component.css']
 })
 export class DriversTableComponent implements OnInit, TableView {
-  request$ = this._webApi.get('/drivers');
+  request$ = this.webApi.get('/drivers');
   colDefs: ColDef[] = [
     {
       field: 'Id'
     },
     {
-      field: 'FirstName'
+      field: 'FirstName',
+      editable: true
     },
     {
-      field: 'LastName'
+      field: 'LastName',
+      editable: true
     },
     {
-      field: 'ContactInfo'
+      field: 'ContactInfo',
+      editable: true
     },
     {
       field: 'HiredDate'
@@ -31,7 +34,7 @@ export class DriversTableComponent implements OnInit, TableView {
   domLayout: DomLayoutType = 'autoHeight';
   
 
-  constructor(private _webApi: WebApiService) { }
+  constructor(protected webApi: WebApiService) { }
   
 
   ngOnInit(): void {

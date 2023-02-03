@@ -35,6 +35,7 @@ export class WebApiService {
   );
 
   public createTableRow = (url: string, formGroup: FormGroup) => this.post(url, formGroup.value).subscribe();
+  public updateTableRow = (url: string, event: any) => this.put(url, event.data).subscribe();
 
   private _handleErrorFunc = (err: any) => {
     this._dialog.open(ErrorDialogComponent, { data: err })

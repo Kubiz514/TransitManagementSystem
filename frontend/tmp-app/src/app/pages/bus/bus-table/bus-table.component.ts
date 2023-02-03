@@ -12,14 +12,26 @@ import { BehaviorSubject, Observable, startWith, switchMap } from 'rxjs';
   styleUrls: ['./bus-table.component.css']
 })
 export class BusTableComponent implements OnInit, TableView {
+<<<<<<< HEAD
   refresh = new BehaviorSubject<boolean>(false);
   request$ = this.refresh.pipe(startWith(true), switchMap(x => this.webApi.get('/buses')));
   colDefs: ColDef[] = [
     {
       field: 'Name'
+=======
+  request$ = this.webApi.get('/buses');
+  colDefs: ColDef[] = [
+    {
+      field: 'Id'
     },
     {
-      field: 'Description'
+      field: 'Name',
+      editable: true
+>>>>>>> main
+    },
+    {
+      field: 'Description',
+      editable: true
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';
@@ -48,7 +60,7 @@ export class BusTableComponent implements OnInit, TableView {
   ];
 
   constructor(protected webApi: WebApiService) { }
-
+  
   ngOnInit(): void {
   }
 

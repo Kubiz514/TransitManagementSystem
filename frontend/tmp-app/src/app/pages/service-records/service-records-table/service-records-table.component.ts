@@ -9,16 +9,18 @@ import { ColDef, DomLayoutType } from 'ag-grid-community';
   styleUrls: ['./service-records-table.component.css']
 })
 export class ServiceRecordsTableComponent implements OnInit, TableView {
-  request$ = this._webApi.get('/service-records');
+  request$ = this.webApi.get('/service-records');
   colDefs: ColDef[] = [
     {
       field: 'Id'
     },
     {
-      field: 'Description'
+      field: 'Description',
+      editable: true
     },
     {
-      field: 'Details'
+      field: 'Details',
+      editable: true
     },
     {
       field: 'DateTime'
@@ -27,7 +29,7 @@ export class ServiceRecordsTableComponent implements OnInit, TableView {
   domLayout: DomLayoutType = 'autoHeight';
   
 
-  constructor(private _webApi: WebApiService) { }
+  constructor(protected webApi: WebApiService) { }
   
 
   ngOnInit(): void {
