@@ -5,6 +5,7 @@ import com.tms.TMS.Models.Document;
 import com.tms.TMS.Models.Driver;
 import com.tms.TMS.Repositories.IBrandRepository;
 import com.tms.TMS.Repositories.IDocumentsRepository;
+import com.tms.TMS.Services.ApiErrorsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,8 @@ public class DocumentsController {
 
     @Autowired
     IDocumentsRepository repository;
+    @Autowired
+    ApiErrorsService errorsService;
     @GetMapping("")
     public Iterable<Document> getAll(){
         Iterable<Document> entities = repository.findAll();
@@ -27,13 +30,23 @@ public class DocumentsController {
     @PostMapping("")
     public void create(@RequestBody Document document)
     {
-        document.ValidTo = LocalDateTime.now();
-        repository.save(document);
+        try {
+            document.ValidTo = LocalDateTime.now();
+            repository.save(document);
+        }
+        catch (Exception e){
+            errorsService.showErrorMessage(500, "Could not save document");
+        }
     }
 
     @PutMapping("")
     public void update(@RequestBody Document document) {
-        repository.save(document);
+        try {
+            repository.save(document);
+        }
+        catch (Exception e){
+            errorsService.showErrorMessage(500, "Could not update document");
+        }
     }
     @GetMapping("/{id}")
     public Optional<Document> get(@PathVariable("id") long id)

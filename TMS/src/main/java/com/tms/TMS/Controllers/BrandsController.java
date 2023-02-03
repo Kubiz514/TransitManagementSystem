@@ -4,6 +4,7 @@ import com.tms.TMS.Models.Brand;
 import com.tms.TMS.Models.Bus;
 import com.tms.TMS.Repositories.IBrandRepository;
 import com.tms.TMS.Repositories.IBusRepository;
+import com.tms.TMS.Services.ApiErrorsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,8 @@ public class BrandsController {
 
     @Autowired
     IBrandRepository repository;
+    @Autowired
+    ApiErrorsService errorsService;
     @GetMapping("")
     public Iterable<Brand> getAll(){
         Iterable<Brand> entities = repository.findAll();
@@ -25,12 +28,22 @@ public class BrandsController {
     @PostMapping("")
     public void create(@RequestBody Brand brand)
     {
-        repository.save(brand);
+        try {
+            repository.save(brand);
+        }
+        catch (Exception e){
+            errorsService.showErrorMessage(500, "Could not save breand");
+        }
     }
 
     @PutMapping("")
     public void update(@RequestBody Brand brand) {
-        repository.save(brand);
+        try {
+            repository.save(brand);
+        }
+        catch (Exception e){
+            errorsService.showErrorMessage(500, "Could not update brand");
+        }
     }
     @GetMapping("/{id}")
     public Optional<Brand> get(@PathVariable("id") long id)

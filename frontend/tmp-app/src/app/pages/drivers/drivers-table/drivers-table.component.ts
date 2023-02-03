@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { ColDef, DomLayoutType } from 'ag-grid-community';
-import { BehaviorSubject, Observable, startWith, switchMap } from 'rxjs';
+import { BehaviorSubject, finalize, Observable, startWith, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-drivers-table',
@@ -68,12 +69,15 @@ export class DriversTableComponent implements OnInit, TableView {
   ];
 
   onSubmit(): void {
-    this.webApi.createTableRow('/drivers', this.form);
-    this.refresh.next(true);
-    this.form.reset();
+    this.webApi.createTableRow('/drivers', this.form).pipe(
+      finalize(() => {
+        this.refresh.next(true);
+        this.form.reset();
+      })
+    ).subscribe();
   }
 
-  constructor(protected webApi: WebApiService) { }
+  constructor(protected webApi: WebApiService, protected dialog: MatDialog) { }
 
 
   ngOnInit(): void {

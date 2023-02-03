@@ -1,10 +1,14 @@
 package com.tms.TMS.Controllers;
 
-import com.tms.TMS.Models.ServiceRecord;
 import com.tms.TMS.Models.Stop;
 import com.tms.TMS.Repositories.IStopRepository;
+import com.tms.TMS.Services.ApiErrorsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ProblemDetail;
+import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -15,6 +19,8 @@ public class StopController {
 
     @Autowired
     IStopRepository repository;
+    @Autowired
+    ApiErrorsService errorsService;
     @GetMapping("")
     public Iterable<Stop> getAll(){
         Iterable<Stop> entities = repository.findAll();
@@ -24,12 +30,23 @@ public class StopController {
     @PostMapping("")
     public void create(@RequestBody Stop stop)
     {
-        repository.save(stop);
+        try {
+            repository.save(stop);
+        }
+        catch (Exception e){
+            errorsService.showErrorMessage(500, "Could not save entity");
+        }
     }
 
     @PutMapping("")
     public void update(@RequestBody Stop stop) {
-        repository.save(stop);
+
+        try {
+            repository.save(stop);
+        }
+        catch (Exception e){
+            errorsService.showErrorMessage(500, "Could not update entity");
+        }
     }
     @GetMapping("/{id}")
     public Optional<Stop> get(@PathVariable("id") long id)

@@ -1,13 +1,24 @@
+
+<app-create-button (click)="dialog.open(createDialog)">
+</app-create-button>
+
 <ng-container *ngIf="request$ | async as request">
-    <ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 500px;" [rowData]="request"
+    <ag-grid-angular class="ag-theme-alpine" editType="fullRow" (rowValueChanged)="webApi.updateTableRow('/stops', $event)" style="width: 100%; height: 500px;" [rowData]="request"
         [columnDefs]="colDefs" [domLayout]="domLayout" [pagination]="true">
 
     </ag-grid-angular>
 </ng-container>
 
-<div style="padding-top: 50px;">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <formly-form [form]="form" [fields]="fields"></formly-form>
-        <button type="submit" class="btn btn-default">Add</button>
-    </form>
-</div>
+<ng-template #createDialog>
+  <h2 mat-dialog-title>Create</h2>
+  <mat-dialog-content>
+    <form [formGroup]="form" #createForm >
+          <formly-form [form]="form" [fields]="fields"></formly-form>
+      </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="form.invalid" [mat-dialog-close]="true"  (click)="onSubmit()">Save</button>
+  </mat-dialog-actions>
+</ng-template>

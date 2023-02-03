@@ -7,6 +7,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FormlyModule } from '@ngx-formly/core';
+import { SharedModule } from 'src/app/shared';
 
 
 @NgModule({
@@ -16,10 +17,7 @@ import { FormlyModule } from '@ngx-formly/core';
   imports: [
     CommonModule,
     BrandRoutingModule,
-    AgGridModule,
-    ReactiveFormsModule,
-    FormlyMaterialModule,
-    FormlyModule
+    SharedModule
   ]
 })
 export class BrandModule { }
