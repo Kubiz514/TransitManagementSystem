@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { ColDef, DomLayoutType } from 'ag-grid-community';
+import { ColDef, DomLayoutType, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { BehaviorSubject, finalize, Observable, startWith, switchMap, tap } from 'rxjs';
 
 @Component({
@@ -13,6 +13,7 @@ import { BehaviorSubject, finalize, Observable, startWith, switchMap, tap } from
   styleUrls: ['./bus-table.component.css']
 })
 export class BusTableComponent implements OnInit, TableView {
+  protected gridApi!: GridApi;
   colDefs: ColDef[] = [
     {
       field: 'Id',
@@ -73,6 +74,10 @@ export class BusTableComponent implements OnInit, TableView {
         this.form.reset();
       })
     ).subscribe();
+  }
+
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
   }
 
 }

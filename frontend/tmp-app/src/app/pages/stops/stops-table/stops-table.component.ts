@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { ColDef, DomLayoutType } from 'ag-grid-community';
+import { ColDef, DomLayoutType, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
 
 @Component({
@@ -13,6 +13,8 @@ import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
   styleUrls: ['./stops-table.component.css']
 })
 export class StopsTableComponent implements OnInit, TableView {
+  protected gridApi!: GridApi;
+
   colDefs: ColDef[] = [
     {
       field: 'Id',
@@ -58,6 +60,13 @@ export class StopsTableComponent implements OnInit, TableView {
     }
   ];
 
+  
+
+  constructor(protected webApi: WebApiService, protected dialog: MatDialog) { }
+
+  ngOnInit(): void {
+  }
+
   onSubmit(): void {
     this.webApi.createTableRow('/stops', this.form).pipe(
       finalize(() => {
@@ -67,9 +76,8 @@ export class StopsTableComponent implements OnInit, TableView {
     ).subscribe();
   }
 
-  constructor(protected webApi: WebApiService, protected dialog: MatDialog) { }
-
-  ngOnInit(): void {
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
   }
 
 }

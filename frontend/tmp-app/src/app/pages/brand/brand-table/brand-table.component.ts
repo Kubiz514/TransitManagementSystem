@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { ColDef, DomLayoutType } from 'ag-grid-community';
+import { ColDef, DomLayoutType, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
 
 @Component({
@@ -13,6 +13,8 @@ import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
   styleUrls: ['./brand-table.component.css']
 })
 export class BrandTableComponent implements OnInit, TableView {
+  protected gridApi!: GridApi;
+
   colDefs: ColDef[] = [
     {
       field: 'Id',
@@ -71,6 +73,10 @@ export class BrandTableComponent implements OnInit, TableView {
 
 
   ngOnInit(): void {
+  }
+
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
   }
 
 }

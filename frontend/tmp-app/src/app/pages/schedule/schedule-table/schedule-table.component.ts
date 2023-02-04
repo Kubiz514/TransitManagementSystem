@@ -5,7 +5,7 @@ import { TableView } from '@core/table-view';
 import { formatDate } from '@core/utils';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { ColDef, DomLayoutType } from 'ag-grid-community';
+import { ColDef, DomLayoutType, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
 
 @Component({
@@ -14,6 +14,8 @@ import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
   styleUrls: ['./schedule-table.component.css']
 })
 export class ScheduleTableComponent implements OnInit, TableView {
+  protected gridApi!: GridApi;
+
   refresh = new BehaviorSubject<boolean>(false);
   request$ = this.refresh.pipe(startWith(true), switchMap(x => this.webApi.get('/schedules')));
   form = new FormGroup({});
@@ -67,4 +69,8 @@ export class ScheduleTableComponent implements OnInit, TableView {
     ).subscribe();
   }
 
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
+  }
+  
 }

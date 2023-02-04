@@ -5,7 +5,7 @@ import { TableView } from '@core/table-view';
 import { formatDate } from '@core/utils';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { ColDef, DomLayoutType } from 'ag-grid-community';
+import { ColDef, DomLayoutType, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { BehaviorSubject, finalize, Observable, startWith, switchMap } from 'rxjs';
 
 @Component({
@@ -14,6 +14,8 @@ import { BehaviorSubject, finalize, Observable, startWith, switchMap } from 'rxj
   styleUrls: ['./documents-table.component.css']
 })
 export class DocumentsTableComponent implements OnInit, TableView {
+  protected gridApi!: GridApi;
+
   colDefs: ColDef[] = [
     {
       field: 'Id',
@@ -71,6 +73,10 @@ export class DocumentsTableComponent implements OnInit, TableView {
   constructor(protected webApi: WebApiService, protected dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
   }
 
 }

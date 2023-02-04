@@ -1,9 +1,13 @@
 
-<app-create-button (click)="dialog.open(createDialog)">
-</app-create-button>
+<div>
+  <app-create-button (click)="dialog.open(createDialog)">
+  </app-create-button>
+  <br/>
+  <app-export-btn [gridApi]="gridApi"></app-export-btn>
+</div>
 
 <ng-container *ngIf="request$ | async as request">
-    <ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 500px;" [rowData]="request"
+    <ag-grid-angular class="ag-theme-alpine" (gridReady)="onGridReady($event)"  style="width: 100%; height: 500px;" [rowData]="request"
         [columnDefs]="colDefs" [domLayout]="domLayout" [pagination]="true">
 
     </ag-grid-angular>

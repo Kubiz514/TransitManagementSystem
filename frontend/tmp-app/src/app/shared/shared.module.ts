@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { NgxErrorsModule } from '@ngspot/ngx-errors';
+import { ExportBtnComponent } from './export-btn/export-btn.component';
 
 const MODULES = [
   CommonModule,
@@ -31,12 +32,12 @@ const MODULES = [
   NgxErrorsModule
 ];
 
-const COMPONENTS = [CreateButtonComponent];
+const COMPONENTS = [CreateButtonComponent, ExportBtnComponent];
 
 @NgModule({
   declarations: [
   ...COMPONENTS,
-  DatepickerFieldTypeComponent
+  DatepickerFieldTypeComponent,
   ],
   imports: [
     ...MODULES,
