@@ -10,6 +10,7 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ColDef, DomLayoutType, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
+import { ActionsCellRendererComponent } from 'src/app/shared/actions-cell-renderer/actions-cell-renderer.component';
 
 @Component({
   selector: 'app-documents-table',
@@ -36,6 +37,16 @@ export class DocumentsTableComponent extends ImportableComponent implements OnIn
       field: 'ValidTo',
       sortable: true,
       valueFormatter: (data: any) => formatDate(data.value, 'DD-MM-YYYY hh:mm')
+    },
+    {
+      field: 'Actions',
+      cellRenderer: ActionsCellRendererComponent,
+      cellRendererParams: {
+        deleteFunc: (x: any) => {
+          this.webApi.delete(`/documents/${x.Id}`, x.Id)
+          .subscribe(() => this.refresh.next(true));
+        }
+      }
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';
@@ -74,7 +85,7 @@ export class DocumentsTableComponent extends ImportableComponent implements OnIn
   }
 
 
-  constructor(protected webApi: WebApiService, protected dialog: MatDialog) { 
+  constructor(protected webApi: WebApiService, protected dialog: MatDialog) {
     super();
   }
 
@@ -93,7 +104,7 @@ export class DocumentsTableComponent extends ImportableComponent implements OnIn
     .subscribe();
   }
 
-  
+
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;

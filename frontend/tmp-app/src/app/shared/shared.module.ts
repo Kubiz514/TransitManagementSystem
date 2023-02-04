@@ -9,12 +9,13 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { AgGridModule } from 'ag-grid-angular';
 import { CreateButtonComponent } from './create-button/create-button.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { DatepickerFieldTypeComponent } from './datepicker-field-type/datepicker-field-type.component'; 
+import { DatepickerFieldTypeComponent } from './datepicker-field-type/datepicker-field-type.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { NgxErrorsModule } from '@ngspot/ngx-errors';
 import { ExportBtnComponent } from './export-btn/export-btn.component';
+import { ActionsCellRendererComponent } from './actions-cell-renderer/actions-cell-renderer.component';
 
 const MODULES = [
   CommonModule,
@@ -32,12 +33,13 @@ const MODULES = [
   NgxErrorsModule
 ];
 
-const COMPONENTS = [CreateButtonComponent, ExportBtnComponent];
+const COMPONENTS = [CreateButtonComponent, ExportBtnComponent, ActionsCellRendererComponent];
 
 @NgModule({
   declarations: [
   ...COMPONENTS,
   DatepickerFieldTypeComponent,
+  ActionsCellRendererComponent,
   ],
   imports: [
     ...MODULES,

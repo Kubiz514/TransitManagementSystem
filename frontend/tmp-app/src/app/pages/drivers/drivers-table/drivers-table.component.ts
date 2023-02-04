@@ -8,6 +8,7 @@ import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { ColDef, DomLayoutType, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { BehaviorSubject, finalize, Observable, startWith, switchMap } from 'rxjs';
+import { ActionsCellRendererComponent } from 'src/app/shared/actions-cell-renderer/actions-cell-renderer.component';
 
 @Component({
   selector: 'app-drivers-table',
@@ -45,6 +46,16 @@ export class DriversTableComponent extends ImportableComponent implements OnInit
       field: 'HiredDate',
       sortable: true,
       valueFormatter: (data: any) => formatDate(data.value, 'DD-MM-YYYY hh:mm')
+    },
+    {
+      field: 'Actions',
+      cellRenderer: ActionsCellRendererComponent,
+      cellRendererParams: {
+        deleteFunc: (x: any) => {
+          this.webApi.delete(`/drivers/${x.Id}`, x.Id)
+          .subscribe(() => this.refresh.next(true));
+        }
+      }
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';
@@ -88,7 +99,8 @@ export class DriversTableComponent extends ImportableComponent implements OnInit
         placeholder: 'DD-MM-YYYY',
         required: true,
       },
-    }
+    },
+
   ];
 
   onSubmit(): void {

@@ -7,6 +7,7 @@ import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { ColDef, DomLayoutType, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
+import { ActionsCellRendererComponent } from 'src/app/shared/actions-cell-renderer/actions-cell-renderer.component';
 
 @Component({
   selector: 'app-brand-table',
@@ -33,6 +34,16 @@ export class BrandTableComponent extends ImportableComponent implements OnInit, 
       editable: true,
       sortable: true,
       filter: 'agTextColumnFilter'
+    },
+    {
+      field: 'Actions',
+      cellRenderer: ActionsCellRendererComponent,
+      cellRendererParams: {
+        deleteFunc: (x: any) => {
+          this.webApi.delete(`/brands/${x.Id}`, x.Id)
+          .subscribe(() => this.refresh.next(true));
+        }
+      }
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';
