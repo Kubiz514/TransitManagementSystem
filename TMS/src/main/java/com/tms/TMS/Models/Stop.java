@@ -1,6 +1,7 @@
 package com.tms.TMS.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -15,10 +16,12 @@ public class Stop {
     public long Id;
 
     @NotNull(message = "Latitude is mandatory")
+    @Min(value = 0, message = "Latitude cannot be lower than 0")
     @Column(nullable=false)
     public float Latitude;
 
     @NotNull(message = "Longitude is mandatory")
+    @Min(value = 1, message = "Longitude has to be at least 1")
     @Column(nullable=false)
     public float Longitude;
 
