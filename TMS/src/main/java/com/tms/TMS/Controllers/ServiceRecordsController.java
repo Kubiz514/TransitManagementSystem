@@ -32,7 +32,6 @@ public class ServiceRecordsController {
     {
         try {
             repository.save(serviceRecord);
-            serviceRecord.DateTime = LocalDateTime.now();
         }
         catch (Exception e){
             errorsService.showErrorMessage(500, "Could not save entity");

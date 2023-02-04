@@ -31,7 +31,6 @@ public class DriversController {
     public void create(@RequestBody Driver driver)
     {
         try {
-            driver.HiredDate = LocalDateTime.now();
             repository.save(driver);
         }
         catch (Exception e){

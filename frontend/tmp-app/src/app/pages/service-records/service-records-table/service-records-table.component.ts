@@ -52,6 +52,15 @@ export class ServiceRecordsTableComponent implements OnInit, TableView {
         placeholder: 'details',
         required: true,
       }
+    },
+    {
+      key: 'DateTime',
+      type: 'datepicker',
+      props: {
+        label: 'DateTime',
+        placeholder: 'DD-MM-YYYY',
+        required: true,
+      }
     }
   ];
 

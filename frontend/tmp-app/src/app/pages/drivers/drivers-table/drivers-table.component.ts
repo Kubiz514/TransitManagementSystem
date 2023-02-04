@@ -65,6 +65,15 @@ export class DriversTableComponent implements OnInit, TableView {
         placeholder: 'contact info',
         required: true,
       }
+    },
+    {
+      key: 'HiredDate',
+      type: 'datepicker',
+      props: {
+        label: 'HiredDate',
+        placeholder: 'DD-MM-YYYY',
+        required: true,
+      }
     }
   ];
 

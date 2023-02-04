@@ -39,6 +39,15 @@ export class DocumentsTableComponent implements OnInit, TableView {
         placeholder: 'type',
         required: true,
       }
+    },
+    {
+      key: 'ValidTo',
+      type: 'datepicker',
+      props: {
+        label: 'ValidTo',
+        placeholder: 'DD-MM-YYYY',
+        required: true,
+      }
     }
   ];
 

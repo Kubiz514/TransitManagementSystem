@@ -8,6 +8,11 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { AgGridModule } from 'ag-grid-angular';
 import { CreateButtonComponent } from './create-button/create-button.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatepickerFieldTypeComponent } from './datepicker-field-type/datepicker-field-type.component'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 
 const MODULES = [
   CommonModule,
@@ -17,17 +22,27 @@ const MODULES = [
   FormlyModule,
   MatDialogModule,
   MatButtonModule,
-  MatIconModule
+  MatIconModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatNativeDateModule,
+  MatInputModule,
 ];
 
 const COMPONENTS = [CreateButtonComponent];
 
 @NgModule({
   declarations: [
-  ...COMPONENTS
+  ...COMPONENTS,
+  DatepickerFieldTypeComponent
   ],
   imports: [
-    ...MODULES
+    ...MODULES,
+    FormlyModule.forRoot({
+      types: [
+        { name: 'datepicker', component: DatepickerFieldTypeComponent },
+      ],
+    }),
   ],
   exports: [
     ...MODULES,

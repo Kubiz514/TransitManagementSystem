@@ -31,7 +31,6 @@ public class DocumentsController {
     public void create(@RequestBody Document document)
     {
         try {
-            document.ValidTo = LocalDateTime.now();
             repository.save(document);
         }
         catch (Exception e){
