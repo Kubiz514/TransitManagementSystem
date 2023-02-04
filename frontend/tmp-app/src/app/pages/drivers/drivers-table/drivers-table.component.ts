@@ -70,7 +70,7 @@ export class DriversTableComponent implements OnInit, TableView {
       key: 'HiredDate',
       type: 'datepicker',
       props: {
-        label: 'HiredDate',
+        label: 'Hired date',
         placeholder: 'DD-MM-YYYY',
         required: true,
       }

@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'stops',
     loadChildren: () => import('./pages/stops/stops.module').then(m => m.StopsModule)
   },
+  {
+    path: '**', pathMatch: 'full',
+    loadChildren: () => import('./pages/bus/bus.module').then(m => m.BusModule)
+  }
 ];
 
 @NgModule({

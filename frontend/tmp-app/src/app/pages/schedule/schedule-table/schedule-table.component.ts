@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
 import { WebApiService } from '@core/web-api';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 import { ColDef, DomLayoutType } from 'ag-grid-community';
+import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-schedule-table',
@@ -9,7 +13,9 @@ import { ColDef, DomLayoutType } from 'ag-grid-community';
   styleUrls: ['./schedule-table.component.css']
 })
 export class ScheduleTableComponent implements OnInit, TableView {
-  request$ = this.webApi.get('/schedules');
+  refresh = new BehaviorSubject<boolean>(false);
+  request$ = this.refresh.pipe(startWith(true), switchMap(x => this.webApi.get('/schedules')));
+  form = new FormGroup({});
   colDefs: ColDef[] = [
     {
       field: 'Departure',
@@ -19,13 +25,41 @@ export class ScheduleTableComponent implements OnInit, TableView {
     }
 
   ];
+
+  fields: FormlyFieldConfig[] = [
+    {
+      key: 'Departure',
+      type: 'datepicker',
+      props: {
+        label: 'Departure',
+        placeholder: 'DD-MM-YYYY',
+        required: true,
+      }
+    },
+    {
+      key: 'Temporary',
+      type: 'checkbox',
+      props: {
+        label: 'Temporary',
+      }
+    },
+  ];
   domLayout: DomLayoutType = 'autoHeight';
   
 
-  constructor(protected webApi: WebApiService) { }
+  constructor(protected webApi: WebApiService, protected dialog: MatDialog) { }
   
 
   ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    this.webApi.createTableRow('/schedules', this.form).pipe(
+      finalize(() => {
+        this.refresh.next(true);
+        this.form.reset();
+      })
+    ).subscribe();
   }
 
 }
