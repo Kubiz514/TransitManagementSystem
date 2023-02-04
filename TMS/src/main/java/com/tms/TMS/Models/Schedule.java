@@ -18,7 +18,7 @@ public class Schedule {
     public LocalDateTime Departure;
 
     @Column(nullable=false)
-    public boolean temporary;
+    public boolean Temporary;
 
     @ManyToOne
     @JoinColumn(name="StopId")

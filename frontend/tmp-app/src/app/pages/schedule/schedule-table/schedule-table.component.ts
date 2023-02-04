@@ -28,7 +28,7 @@ export class ScheduleTableComponent extends ImportableComponent implements OnIni
       valueFormatter: (data: any) => formatDate(data.value, 'DD-MM-YYYY hh:mm')
     },
     {
-      field: 'temporary',
+      field: 'Temporary',
       sortable: true,
       filter: 'agTextColumnFilter'
     },
