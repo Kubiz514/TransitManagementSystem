@@ -16,7 +16,7 @@
 
 <ng-container *ngIf="request$ | async as request">
     <ag-grid-angular class="ag-theme-alpine" (gridReady)="onGridReady($event)" editType="fullRow" (rowValueChanged)="webApi.updateTableRow('/service-records', $event)" style="width: 100%; height: 500px;" [rowData]="request"
-        [columnDefs]="colDefs" [domLayout]="domLayout" [pagination]="true">
+        [columnDefs]="colDefs" [domLayout]="domLayout" [paginationPageSize]="10" [pagination]="true">
 
     </ag-grid-angular>
 </ng-container>

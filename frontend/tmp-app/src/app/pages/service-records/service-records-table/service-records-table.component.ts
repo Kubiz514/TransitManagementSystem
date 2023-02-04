@@ -69,7 +69,7 @@ export class ServiceRecordsTableComponent extends ImportableComponent implements
       key: 'DateTime',
       type: 'datepicker',
       props: {
-        label: 'DateTime',
+        label: 'Date time',
         placeholder: 'DD-MM-YYYY',
         required: true,
       }

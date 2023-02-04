@@ -36,13 +36,6 @@ public class BusController {
         }
     }
 
-    @PostMapping("/import")
-    public void importData(@RequestBody Iterable<Bus> entities)
-    {
-        entities.forEach(entity -> entity.Id = 0);
-        repository.saveAll(entities);
-    }
-
     @PutMapping("")
     public void update(@RequestBody Bus bus) {
 
@@ -62,5 +55,17 @@ public class BusController {
     private void delete(@PathVariable("id") long id)
     {
         repository.deleteById(id);
+    }
+
+    @PostMapping("/import")
+    public void importData(@RequestBody Iterable<Bus> entities)
+    {
+        try {
+            entities.forEach(entity -> entity.Id = 0);
+            repository.saveAll(entities);
+        }
+        catch(Exception e) {
+            errorsService.showErrorMessage(500, "Could not import data");
+        }
     }
 }

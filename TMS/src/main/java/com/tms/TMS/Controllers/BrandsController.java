@@ -59,7 +59,12 @@ public class BrandsController {
     @PostMapping("/import")
     public void importData(@RequestBody Iterable<Brand> entities)
     {
-        entities.forEach(entity -> entity.Id = 0);
-        repository.saveAll(entities);
+        try {
+            entities.forEach(entity -> entity.Id = 0);
+            repository.saveAll(entities);
+        }
+        catch(Exception e) {
+            errorsService.showErrorMessage(500, "Could not import data");
+        }
     }
 }

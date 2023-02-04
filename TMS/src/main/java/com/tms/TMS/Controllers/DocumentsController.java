@@ -60,9 +60,14 @@ public class DocumentsController {
     }
 
     @PostMapping("/import")
-    public void importData(@RequestBody Iterable<Document> documents)
+    public void importData(@RequestBody Iterable<Document> entities)
     {
-        documents.forEach(doc -> doc.Id = 0);
-        repository.saveAll(documents);
+        try {
+            entities.forEach(entity -> entity.Id = 0);
+            repository.saveAll(entities);
+        }
+        catch(Exception e) {
+            errorsService.showErrorMessage(500, "Could not import data");
+        }
     }
 }

@@ -63,7 +63,12 @@ public class StopController {
     @PostMapping("/import")
     public void importData(@RequestBody Iterable<Stop> entities)
     {
-        entities.forEach(entity -> entity.Id = 0);
-        repository.saveAll(entities);
+        try {
+            entities.forEach(entity -> entity.Id = 0);
+            repository.saveAll(entities);
+        }
+        catch(Exception e) {
+            errorsService.showErrorMessage(500, "Could not import data");
+        }
     }
 }
