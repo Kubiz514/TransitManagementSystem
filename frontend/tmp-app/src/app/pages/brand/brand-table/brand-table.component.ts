@@ -15,15 +15,21 @@ import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
 export class BrandTableComponent implements OnInit, TableView {
   colDefs: ColDef[] = [
     {
-      field: 'Id'
+      field: 'Id',
+      sortable: true,
+      filter: 'agNumberColumnFilter'
     },
     {
       field: 'Name',
-      editable: true
+      editable: true,
+      sortable: true,
+      filter: 'agTextColumnFilter'
     },
     {
       field: 'Description',
-      editable: true
+      editable: true,
+      sortable: true,
+      filter: 'agTextColumnFilter'
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';

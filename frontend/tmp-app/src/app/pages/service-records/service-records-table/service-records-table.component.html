@@ -18,7 +18,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close (click)="form.reset()">Cancel</button>
     <button mat-raised-button color="primary" [disabled]="form.invalid" [mat-dialog-close]="true"  (click)="onSubmit()">Save</button>
   </mat-dialog-actions>
 </ng-template>

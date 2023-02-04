@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
+import { formatDate } from '@core/utils';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { ColDef, DomLayoutType } from 'ag-grid-community';
@@ -15,14 +16,20 @@ import { BehaviorSubject, finalize, Observable, startWith, switchMap } from 'rxj
 export class DocumentsTableComponent implements OnInit, TableView {
   colDefs: ColDef[] = [
     {
-      field: 'Id'
+      field: 'Id',
+      sortable: true,
+      filter: 'agNumberColumnFilter'
     },
     {
       field: 'DocumentType',
-      editable: true
+      editable: true,
+      sortable: true,
+      filter: 'agTextColumnFilter'
     },
     {
-      field: 'ValidTo'
+      field: 'ValidTo',
+      sortable: true,
+      valueFormatter: (data: any) => formatDate(data.value, 'DD-MM-YYYY hh:mm')
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';
@@ -44,7 +51,7 @@ export class DocumentsTableComponent implements OnInit, TableView {
       key: 'ValidTo',
       type: 'datepicker',
       props: {
-        label: 'ValidTo',
+        label: 'Valid to',
         placeholder: 'DD-MM-YYYY',
         required: true,
       }

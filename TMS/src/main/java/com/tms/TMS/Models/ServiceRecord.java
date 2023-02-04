@@ -2,6 +2,7 @@ package com.tms.TMS.Models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public class ServiceRecord {
     public String Description;
     @NotEmpty(message = "Details info is mandatory")
     public String Details;
+    @NotNull(message = "Date time is required")
     public LocalDateTime DateTime;
 
     @ManyToOne

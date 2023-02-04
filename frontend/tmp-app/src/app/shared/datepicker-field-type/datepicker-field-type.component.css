@@ -11,3 +11,7 @@ label {
 .datepicker-label {
     color: grey;
 }
+
+.error-container {
+    color: red;
+}

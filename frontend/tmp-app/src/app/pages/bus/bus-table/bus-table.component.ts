@@ -15,14 +15,20 @@ import { BehaviorSubject, finalize, Observable, startWith, switchMap, tap } from
 export class BusTableComponent implements OnInit, TableView {
   colDefs: ColDef[] = [
     {
-      field: 'Id'
+      field: 'Id',
+      sortable: true,
+      filter: 'agNumberColumnFilter'
     },
     {
-      field: 'Name'
+      field: 'Name',
+      sortable: true,
+      filter: 'agTextColumnFilter'
     },
     {
       field: 'Description',
-      editable: true
+      editable: true,
+      sortable: true,
+      filter: 'agTextColumnFilter'
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';

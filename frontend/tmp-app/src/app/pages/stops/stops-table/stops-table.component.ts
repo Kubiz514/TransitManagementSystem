@@ -15,15 +15,21 @@ import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
 export class StopsTableComponent implements OnInit, TableView {
   colDefs: ColDef[] = [
     {
-      field: 'Id'
+      field: 'Id',
+      sortable: true,
+      filter: 'agNumberColumnFilter'
     },
     {
       field: 'Latitude',
-      editable: true
+      editable: true,
+      sortable: true,
+      filter: 'agNumberColumnFilter'
     },
     {
       field: 'Longitude',
-      editable: true
+      editable: true,
+      sortable: true,
+      filter: 'agNumberColumnFilter'
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';

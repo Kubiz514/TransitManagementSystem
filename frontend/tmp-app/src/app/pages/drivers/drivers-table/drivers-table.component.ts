@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
+import { formatDate } from '@core/utils';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { ColDef, DomLayoutType } from 'ag-grid-community';
@@ -15,22 +16,32 @@ import { BehaviorSubject, finalize, Observable, startWith, switchMap } from 'rxj
 export class DriversTableComponent implements OnInit, TableView {
   colDefs: ColDef[] = [
     {
-      field: 'Id'
+      field: 'Id',
+      sortable: true,
+      filter: 'agNumberColumnFilter'
     },
     {
       field: 'FirstName',
-      editable: true
+      editable: true,
+      sortable: true,
+      filter: 'agTextColumnFilter'
     },
     {
       field: 'LastName',
-      editable: true
+      editable: true,
+      sortable: true,
+      filter: 'agTextColumnFilter'
     },
     {
       field: 'ContactInfo',
-      editable: true
+      editable: true,
+      sortable: true,
+      filter: 'agTextColumnFilter'
     },
     {
-      field: 'HiredDate'
+      field: 'HiredDate',
+      sortable: true,
+      valueFormatter: (data: any) => formatDate(data.value, 'DD-MM-YYYY hh:mm')
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';
@@ -73,7 +84,7 @@ export class DriversTableComponent implements OnInit, TableView {
         label: 'Hired date',
         placeholder: 'DD-MM-YYYY',
         required: true,
-      }
+      },
     }
   ];
 

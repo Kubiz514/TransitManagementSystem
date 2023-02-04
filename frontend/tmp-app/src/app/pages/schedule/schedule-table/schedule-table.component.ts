@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
+import { formatDate } from '@core/utils';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { ColDef, DomLayoutType } from 'ag-grid-community';
@@ -19,9 +20,13 @@ export class ScheduleTableComponent implements OnInit, TableView {
   colDefs: ColDef[] = [
     {
       field: 'Departure',
+      sortable: true,
+      valueFormatter: (data: any) => formatDate(data.value, 'DD-MM-YYYY hh:mm')
     },
     {
-      field: 'temporary'
+      field: 'temporary',
+      sortable: true,
+      filter: 'agTextColumnFilter'
     }
 
   ];

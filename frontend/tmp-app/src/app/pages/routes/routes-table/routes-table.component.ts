@@ -16,7 +16,9 @@ export class RoutesTableComponent implements OnInit, TableView {
   colDefs: ColDef[] = [
     {
       field: 'Name',
-      editable: true
+      editable: true,
+      sortable: true,
+      filter: 'agTextColumnFilter'
     }
   ];
   domLayout: DomLayoutType = 'autoHeight';

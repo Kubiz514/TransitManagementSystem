@@ -13,6 +13,7 @@ import { DatepickerFieldTypeComponent } from './datepicker-field-type/datepicker
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { NgxErrorsModule } from '@ngspot/ngx-errors';
 
 const MODULES = [
   CommonModule,
@@ -27,6 +28,7 @@ const MODULES = [
   MatFormFieldModule,
   MatNativeDateModule,
   MatInputModule,
+  NgxErrorsModule
 ];
 
 const COMPONENTS = [CreateButtonComponent];

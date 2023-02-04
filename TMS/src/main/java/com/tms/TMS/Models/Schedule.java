@@ -1,6 +1,7 @@
 package com.tms.TMS.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ public class Schedule {
     @GeneratedValue
     public long Id;
 
+    @NotNull(message = "Date time is required")
     @Column(nullable=false)
     public LocalDateTime Departure;
 
