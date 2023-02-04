@@ -2,6 +2,7 @@ package com.tms.TMS.Models;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
