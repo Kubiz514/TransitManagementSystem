@@ -46,7 +46,7 @@ export class BrandTableComponent extends ImportableComponent implements OnInit, 
       }
     }
   ];
-  domLayout: DomLayoutType = 'autoHeight';
+  domLayout: DomLayoutType = 'normal';
   paginationPageSize = 10;
   refresh = new BehaviorSubject<boolean>(false);
   request$ = this.refresh.pipe(startWith(true), switchMap(x => this.webApi.get('/brands')));

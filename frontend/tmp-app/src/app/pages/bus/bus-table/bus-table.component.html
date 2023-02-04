@@ -12,15 +12,15 @@
       <button mat-raised-button color="accent" (click)="import()">Import</button>
     </ng-container>
   </div>
-  
-  
+
+
 </div>
-  
+
 
 <ng-container *ngIf="request$ | async as request">
     <ag-grid-angular (gridReady)="onGridReady($event)"  editType="fullRow" class="ag-theme-alpine" style="width: 100%; height: 500px;"
         (rowValueChanged)="webApi.updateTableRow('/buses',$event)" [rowData]="request" [columnDefs]="colDefs"
-        [domLayout]="domLayout" [pagination]="true" [paginationPageSize]="10" [paginationPageSize]="paginationPageSize">
+         [pagination]="true" [paginationPageSize]="10" [paginationPageSize]="paginationPageSize">
 
     </ag-grid-angular>
 </ng-container>
