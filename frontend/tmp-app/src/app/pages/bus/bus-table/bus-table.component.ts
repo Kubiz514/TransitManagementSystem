@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
+import { ImportableComponent } from '@core/table-view/importable/importable.component';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { ColDef, DomLayoutType, GridApi, GridReadyEvent } from 'ag-grid-community';
@@ -12,7 +13,7 @@ import { BehaviorSubject, finalize, Observable, startWith, switchMap, tap } from
   templateUrl: './bus-table.component.html',
   styleUrls: ['./bus-table.component.css']
 })
-export class BusTableComponent implements OnInit, TableView {
+export class BusTableComponent extends ImportableComponent implements OnInit, TableView {
   protected gridApi!: GridApi;
   colDefs: ColDef[] = [
     {
@@ -61,7 +62,9 @@ export class BusTableComponent implements OnInit, TableView {
   constructor(
     protected webApi: WebApiService,
     protected dialog: MatDialog
-    ) { }
+    ) { 
+      super();
+    }
 
   ngOnInit(): void {
   }
@@ -75,6 +78,19 @@ export class BusTableComponent implements OnInit, TableView {
       })
     ).subscribe();
   }
+
+  import(): void {
+    this.webApi.post('/buses/import', this.importRequestBody.getValue())
+    .pipe(
+      finalize(() => {
+        this.importRequestBody.next(undefined);
+        this.fileInput.reset();
+        this.refresh.next(true);
+      })
+    )
+    .subscribe();
+  }
+
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;

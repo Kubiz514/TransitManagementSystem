@@ -1,10 +1,20 @@
 
 <div>
-    <app-create-button (click)="dialog.open(createDialog)">
-    </app-create-button>
+  <app-create-button (click)="dialog.open(createDialog)">
+  </app-create-button>
+  <br/>
+  <app-export-btn [gridApi]="gridApi"></app-export-btn>
+  <br/>
+  <div class="import-container">
+    <input type="file" [formControl]="fileInput" (change)="fileInputChanged($event)" />
     <br/>
-    <app-export-btn [gridApi]="gridApi"></app-export-btn>
+    <ng-container *ngIf="importRequestBody | async">
+      <button mat-raised-button color="accent" (click)="import()">Import</button>
+    </ng-container>
   </div>
+  
+  
+</div>
   
 
 <ng-container *ngIf="request$ | async as request">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
+import { ImportableComponent } from '@core/table-view/importable/importable.component';
 import { formatDate } from '@core/utils';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
@@ -13,7 +14,7 @@ import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
   templateUrl: './service-records-table.component.html',
   styleUrls: ['./service-records-table.component.css']
 })
-export class ServiceRecordsTableComponent implements OnInit, TableView {
+export class ServiceRecordsTableComponent extends ImportableComponent implements OnInit, TableView {
   protected gridApi!: GridApi;
 
   colDefs: ColDef[] = [
@@ -85,7 +86,9 @@ export class ServiceRecordsTableComponent implements OnInit, TableView {
   }
 
 
-  constructor(protected webApi: WebApiService, protected dialog: MatDialog) { }
+  constructor(protected webApi: WebApiService, protected dialog: MatDialog) {
+    super();
+   }
 
 
   ngOnInit(): void {
@@ -93,6 +96,18 @@ export class ServiceRecordsTableComponent implements OnInit, TableView {
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
+  }
+
+  import(): void {
+    this.webApi.post('/service-records/import', this.importRequestBody.getValue())
+    .pipe(
+      finalize(() => {
+        this.importRequestBody.next(undefined);
+        this.fileInput.reset();
+        this.refresh.next(true);
+      })
+    )
+    .subscribe();
   }
 
 }

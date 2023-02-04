@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -56,5 +57,12 @@ public class DocumentsController {
     private void delete(@PathVariable("id") long id)
     {
         repository.deleteById(id);
+    }
+
+    @PostMapping("/import")
+    public void importData(@RequestBody Iterable<Document> documents)
+    {
+        documents.forEach(doc -> doc.Id = 0);
+        repository.saveAll(documents);
     }
 }

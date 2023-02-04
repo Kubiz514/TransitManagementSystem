@@ -1,5 +1,6 @@
 package com.tms.TMS.Controllers;
 
+import com.tms.TMS.Models.Bus;
 import com.tms.TMS.Models.Stop;
 import com.tms.TMS.Repositories.IStopRepository;
 import com.tms.TMS.Services.ApiErrorsService;
@@ -57,5 +58,12 @@ public class StopController {
     private void delete(@PathVariable("id") long id)
     {
         repository.deleteById(id);
+    }
+
+    @PostMapping("/import")
+    public void importData(@RequestBody Iterable<Stop> entities)
+    {
+        entities.forEach(entity -> entity.Id = 0);
+        repository.saveAll(entities);
     }
 }

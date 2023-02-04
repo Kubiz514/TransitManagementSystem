@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SpinnerService } from '@core/spinner/spinner.service';
 import { ColDef } from 'ag-grid-community';
 import { WebApiService } from './core';
 import { RouteOption } from './shared/layout';
@@ -9,6 +10,10 @@ import { RouteOption } from './shared/layout';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(protected spinnerService: SpinnerService) {
+
+  }
   options: RouteOption[] = [
     {
       header: 'Brands',

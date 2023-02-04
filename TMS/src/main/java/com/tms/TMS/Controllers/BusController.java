@@ -36,6 +36,13 @@ public class BusController {
         }
     }
 
+    @PostMapping("/import")
+    public void importData(@RequestBody Iterable<Bus> entities)
+    {
+        entities.forEach(entity -> entity.Id = 0);
+        repository.saveAll(entities);
+    }
+
     @PutMapping("")
     public void update(@RequestBody Bus bus) {
 

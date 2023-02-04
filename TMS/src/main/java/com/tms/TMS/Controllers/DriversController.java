@@ -1,5 +1,6 @@
 package com.tms.TMS.Controllers;
 
+import com.tms.TMS.Models.Bus;
 import com.tms.TMS.Models.Document;
 import com.tms.TMS.Models.Driver;
 import com.tms.TMS.Models.Route;
@@ -57,5 +58,12 @@ public class DriversController {
     private void delete(@PathVariable("id") long id)
     {
         repository.deleteById(id);
+    }
+
+    @PostMapping("/import")
+    public void importData(@RequestBody Iterable<Driver> entities)
+    {
+        entities.forEach(entity -> entity.Id = 0);
+        repository.saveAll(entities);
     }
 }

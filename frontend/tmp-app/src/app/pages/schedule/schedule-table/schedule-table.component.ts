@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
+import { ImportableComponent } from '@core/table-view/importable/importable.component';
 import { formatDate } from '@core/utils';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
@@ -13,7 +14,7 @@ import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
   templateUrl: './schedule-table.component.html',
   styleUrls: ['./schedule-table.component.css']
 })
-export class ScheduleTableComponent implements OnInit, TableView {
+export class ScheduleTableComponent extends ImportableComponent implements OnInit, TableView {
   protected gridApi!: GridApi;
 
   refresh = new BehaviorSubject<boolean>(false);
@@ -54,7 +55,9 @@ export class ScheduleTableComponent implements OnInit, TableView {
   domLayout: DomLayoutType = 'autoHeight';
   
 
-  constructor(protected webApi: WebApiService, protected dialog: MatDialog) { }
+  constructor(protected webApi: WebApiService, protected dialog: MatDialog) {
+    super();
+   }
   
 
   ngOnInit(): void {
@@ -73,4 +76,16 @@ export class ScheduleTableComponent implements OnInit, TableView {
     this.gridApi = params.api;
   }
   
+  import(): void {
+    this.webApi.post('/schedules/import', this.importRequestBody.getValue())
+    .pipe(
+      finalize(() => {
+        this.importRequestBody.next(undefined);
+        this.fileInput.reset();
+        this.refresh.next(true);
+      })
+    )
+    .subscribe();
+  }
+
 }

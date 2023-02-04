@@ -1,5 +1,6 @@
 package com.tms.TMS.Controllers;
 
+import com.tms.TMS.Models.Bus;
 import com.tms.TMS.Models.Route;
 import com.tms.TMS.Models.Schedule;
 import com.tms.TMS.Repositories.IScheduleRepository;
@@ -56,5 +57,12 @@ public class ScheduleController {
     private void delete(@PathVariable("id") long id)
     {
         repository.deleteById(id);
+    }
+
+    @PostMapping("/import")
+    public void importData(@RequestBody Iterable<Schedule> entities)
+    {
+        entities.forEach(entity -> entity.Id = 0);
+        repository.saveAll(entities);
     }
 }

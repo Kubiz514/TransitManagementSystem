@@ -1,5 +1,6 @@
 package com.tms.TMS.Controllers;
 
+import com.tms.TMS.Models.Bus;
 import com.tms.TMS.Models.Driver;
 import com.tms.TMS.Models.Route;
 import com.tms.TMS.Models.ServiceRecord;
@@ -58,5 +59,12 @@ public class ServiceRecordsController {
     private void delete(@PathVariable("id") long id)
     {
         repository.deleteById(id);
+    }
+
+    @PostMapping("/import")
+    public void importData(@RequestBody Iterable<ServiceRecord> entities)
+    {
+        entities.forEach(entity -> entity.Id = 0);
+        repository.saveAll(entities);
     }
 }

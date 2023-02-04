@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TableView } from '@core/table-view';
+import { ImportableComponent } from '@core/table-view/importable/importable.component';
 import { WebApiService } from '@core/web-api';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { ColDef, DomLayoutType, GridApi, GridReadyEvent } from 'ag-grid-community';
@@ -12,7 +13,7 @@ import { BehaviorSubject, finalize, startWith, switchMap } from 'rxjs';
   templateUrl: './stops-table.component.html',
   styleUrls: ['./stops-table.component.css']
 })
-export class StopsTableComponent implements OnInit, TableView {
+export class StopsTableComponent extends ImportableComponent implements OnInit, TableView {
   protected gridApi!: GridApi;
 
   colDefs: ColDef[] = [
@@ -62,7 +63,9 @@ export class StopsTableComponent implements OnInit, TableView {
 
   
 
-  constructor(protected webApi: WebApiService, protected dialog: MatDialog) { }
+  constructor(protected webApi: WebApiService, protected dialog: MatDialog) { 
+    super();
+  }
 
   ngOnInit(): void {
   }
@@ -80,4 +83,15 @@ export class StopsTableComponent implements OnInit, TableView {
     this.gridApi = params.api;
   }
 
+  import(): void {
+    this.webApi.post('/stops/import', this.importRequestBody.getValue())
+    .pipe(
+      finalize(() => {
+        this.importRequestBody.next(undefined);
+        this.fileInput.reset();
+        this.refresh.next(true);
+      })
+    )
+    .subscribe();
+  }
 }

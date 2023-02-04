@@ -55,4 +55,11 @@ public class BrandsController {
     {
         repository.deleteById(id);
     }
+
+    @PostMapping("/import")
+    public void importData(@RequestBody Iterable<Brand> entities)
+    {
+        entities.forEach(entity -> entity.Id = 0);
+        repository.saveAll(entities);
+    }
 }
