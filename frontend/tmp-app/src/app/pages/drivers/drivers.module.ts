@@ -3,10 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DriversRoutingModule } from './drivers-routing.module';
 import { DriversTableComponent } from './drivers-table/drivers-table.component';
-import { AgGridModule } from 'ag-grid-angular';
-import { FormlyModule } from '@ngx-formly/core';
-import { FormlyMaterialModule } from '@ngx-formly/material';
-import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared';
 
 
 @NgModule({
@@ -16,10 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     DriversRoutingModule,
-    AgGridModule,
-    ReactiveFormsModule,
-    FormlyMaterialModule,
-    FormlyModule
+    SharedModule
   ]
 })
 export class DriversModule { }

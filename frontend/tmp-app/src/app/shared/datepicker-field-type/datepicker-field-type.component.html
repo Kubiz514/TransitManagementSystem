@@ -1,0 +1,12 @@
+<div>
+    <mat-label class="datepicker-label">{{to.label}}</mat-label>
+    <br/>
+    <input 
+    [formControl]="formControl"
+    [formlyAttributes]="field"
+    type="datetime-local"/>
+    <div [ngxErrors]="formControl" class="error-container">
+        <div ngxError="required">This field is required</div>
+      </div>
+</div>
+

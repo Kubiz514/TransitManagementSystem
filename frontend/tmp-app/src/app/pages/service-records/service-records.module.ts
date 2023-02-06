@@ -3,10 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ServiceRecordsRoutingModule } from './service-records-routing.module';
 import { ServiceRecordsTableComponent } from './service-records-table/service-records-table.component';
-import { AgGridModule } from 'ag-grid-angular';
-import { FormlyModule } from '@ngx-formly/core';
-import { FormlyMaterialModule } from '@ngx-formly/material';
-import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared';
 
 
 @NgModule({
@@ -16,10 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ServiceRecordsRoutingModule,
-    AgGridModule,
-    ReactiveFormsModule,
-    FormlyMaterialModule,
-    FormlyModule
+    SharedModule
   ]
 })
 export class ServiceRecordsModule { }

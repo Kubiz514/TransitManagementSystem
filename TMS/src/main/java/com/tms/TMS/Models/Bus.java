@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="Buses")
@@ -11,7 +12,9 @@ public class Bus {
     @Id
     @GeneratedValue
     public long Id;
+    @NotEmpty(message = "Name is mandatory")
     public String Name;
+    @NotEmpty(message = "Description is mandatory")
     public String Description;
 
     @ManyToOne
