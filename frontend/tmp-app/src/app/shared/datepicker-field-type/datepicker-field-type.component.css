@@ -1,0 +1,17 @@
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: 0.4rem 0;
+}
+
+.datepicker-label {
+    color: grey;
+}
+
+.error-container {
+    color: red;
+}

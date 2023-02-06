@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ServiceRecordsRoutingModule } from './service-records-routing.module';
 import { ServiceRecordsTableComponent } from './service-records-table/service-records-table.component';
-import { AgGridModule } from 'ag-grid-angular';
+import { SharedModule } from 'src/app/shared';
 
 
 @NgModule({
@@ -13,7 +13,7 @@ import { AgGridModule } from 'ag-grid-angular';
   imports: [
     CommonModule,
     ServiceRecordsRoutingModule,
-    AgGridModule
+    SharedModule
   ]
 })
 export class ServiceRecordsModule { }

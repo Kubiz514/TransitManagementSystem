@@ -4,6 +4,7 @@ import com.tms.TMS.Models.Brand;
 import com.tms.TMS.Models.Bus;
 import com.tms.TMS.Repositories.IBrandRepository;
 import com.tms.TMS.Repositories.IBusRepository;
+import com.tms.TMS.Services.ApiErrorsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,8 @@ public class BrandsController {
 
     @Autowired
     IBrandRepository repository;
+    @Autowired
+    ApiErrorsService errorsService;
     @GetMapping("")
     public Iterable<Brand> getAll(){
         Iterable<Brand> entities = repository.findAll();
@@ -25,12 +28,22 @@ public class BrandsController {
     @PostMapping("")
     public void create(@RequestBody Brand brand)
     {
-        repository.save(brand);
+        try {
+            repository.save(brand);
+        }
+        catch (Exception e){
+            errorsService.showErrorMessage(500, "Could not save breand");
+        }
     }
 
     @PutMapping("")
     public void update(@RequestBody Brand brand) {
-        repository.save(brand);
+        try {
+            repository.save(brand);
+        }
+        catch (Exception e){
+            errorsService.showErrorMessage(500, "Could not update brand");
+        }
     }
     @GetMapping("/{id}")
     public Optional<Brand> get(@PathVariable("id") long id)
@@ -41,5 +54,17 @@ public class BrandsController {
     private void delete(@PathVariable("id") long id)
     {
         repository.deleteById(id);
+    }
+
+    @PostMapping("/import")
+    public void importData(@RequestBody Iterable<Brand> entities)
+    {
+        try {
+            entities.forEach(entity -> entity.Id = 0);
+            repository.saveAll(entities);
+        }
+        catch(Exception e) {
+            errorsService.showErrorMessage(500, "Could not import data");
+        }
     }
 }

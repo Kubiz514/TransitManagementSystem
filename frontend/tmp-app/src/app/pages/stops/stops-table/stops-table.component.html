@@ -1,6 +1,37 @@
+
+<div>
+  <app-create-button (click)="dialog.open(createDialog)">
+  </app-create-button>
+  <br/>
+  <app-export-btn [gridApi]="gridApi"></app-export-btn>
+  <br/>
+  <div class="import-container">
+    <input type="file" [formControl]="fileInput" (change)="fileInputChanged($event)" />
+    <br/>
+    <ng-container *ngIf="importRequestBody | async">
+      <button mat-raised-button color="accent" (click)="import()">Import</button>
+    </ng-container>
+  </div>
+</div>
+
+
 <ng-container *ngIf="request$ | async as request">
-    <ag-grid-angular class="ag-theme-alpine" style="width: 100%; height: 500px;" [rowData]="request"
-        [columnDefs]="colDefs" [domLayout]="domLayout" [pagination]="true">
+    <ag-grid-angular (gridReady)="onGridReady($event)" class="ag-theme-alpine" editType="fullRow" (rowValueChanged)="webApi.updateTableRow('/stops', $event)" style="width: 100%; height: 32.45rem;overflow: hidden;" [rowData]="request"
+        [columnDefs]="colDefs"  [paginationPageSize]="10" [pagination]="true">
 
     </ag-grid-angular>
 </ng-container>
+
+<ng-template #createDialog>
+  <h2 mat-dialog-title>Create</h2>
+  <mat-dialog-content>
+    <form [formGroup]="form" #createForm >
+          <formly-form [form]="form" [fields]="fields"></formly-form>
+      </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="form.reset()">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="form.invalid" [mat-dialog-close]="true"  (click)="onSubmit()">Save</button>
+  </mat-dialog-actions>
+</ng-template>

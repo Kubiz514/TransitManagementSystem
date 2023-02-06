@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DriversRoutingModule } from './drivers-routing.module';
 import { DriversTableComponent } from './drivers-table/drivers-table.component';
-import { AgGridModule } from 'ag-grid-angular';
+import { SharedModule } from 'src/app/shared';
 
 
 @NgModule({
@@ -13,7 +13,7 @@ import { AgGridModule } from 'ag-grid-angular';
   imports: [
     CommonModule,
     DriversRoutingModule,
-    AgGridModule
+    SharedModule
   ]
 })
 export class DriversModule { }

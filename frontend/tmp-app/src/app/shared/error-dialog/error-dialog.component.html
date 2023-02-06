@@ -1,6 +1,14 @@
 <h1 mat-dialog-title>Error</h1>
 <div mat-dialog-content>
-  Something went wrong
+  <span *ngIf="data.error.message; else defaultError">
+    {{data.error.message}}
+
+  </span>
+
+  <ng-template #defaultError>
+    <span>Something went wrong</span>
+  </ng-template>
+
 </div>
 <div mat-dialog-actions>
 </div>

@@ -1,2 +1,17 @@
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+.import-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+.ag-center-cols-container {
+  width: 100% !important;
+
+}
+
+.ag-row-even {
+  width: 100% !important;
+}

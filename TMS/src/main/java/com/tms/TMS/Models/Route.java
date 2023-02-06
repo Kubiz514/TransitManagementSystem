@@ -1,6 +1,7 @@
 package com.tms.TMS.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class Route {
     public long Id;
 
     @Column(nullable=false)
+    @NotEmpty(message = "Name info is mandatory")
     public String Name;
 
     @ManyToOne

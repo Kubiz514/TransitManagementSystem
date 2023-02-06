@@ -4,6 +4,7 @@ import { environment } from '@environment/environment';
 import { catchError, Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/error-dialog/error-dialog.component';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,9 @@ export class WebApiService {
   .pipe(
     catchError(this._handleErrorFunc)
   );
+
+  public createTableRow = (url: string, formGroup: FormGroup) => this.post(url, formGroup.value);
+  public updateTableRow = (url: string, event: any) => this.put(url, event.data).subscribe();
 
   private _handleErrorFunc = (err: any) => {
     this._dialog.open(ErrorDialogComponent, { data: err })
