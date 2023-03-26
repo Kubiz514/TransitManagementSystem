@@ -17,6 +17,7 @@ public class TmsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TmsApplication.class, args);
+		System.out.println("Swagger running: http://localhost:8080/swagger-ui/index.html");
 	}
 
 	@Bean
